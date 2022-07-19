@@ -1,8 +1,13 @@
-import argparse
-import logging 
+import requests
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Log time to Tempo 😎")
-    args = parser.parse_args()
+class Tempo:
+    def __init__(self, token, url):
+        self.header = {
+            "Authorization": f"Bearer {token}"
+        }
+        self.baseUrl = url
+        self.session = requests.Session()
+        self.session.headers.update(self.header)
 
-logging.warning('just works')
+    def test(self):
+        print('Tempo class test')
