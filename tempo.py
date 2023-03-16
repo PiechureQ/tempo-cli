@@ -3,8 +3,9 @@ import logging
 
 TEMPO_URL = 'https://api.tempo.io/4'
 
-def urljoin(base, path):
-    return base + path
+ENDPOINTS = {
+    "worklogs": "/worklogs",
+}
 
 class Tempo:
     def __init__(self, token, account_id, logging_level=logging.INFO):
@@ -19,7 +20,7 @@ class Tempo:
 
     def __api_post(self, path, data=None, headers=None, params=None, json=None, raise_for_status=True):
         logging.getLogger("tempo").setLevel(self.logging_level)
-        url = urljoin(self.baseUrl, path)
+        url = self.baseUrl + path
         response = self.session.post(url, data=data, headers=headers, params=params, json=json, timeout=3)
         if raise_for_status:
             response.raise_for_status()
@@ -35,5 +36,4 @@ class Tempo:
             "description": "Tempo cli tool"
         }
 
-        return self.__api_post('/worklogs', json=payload)
-
+        return self.__api_post(ENDPOINTS["worklogs"], json=payload)

@@ -1,3 +1,5 @@
 [user]
-token = xxxxxxxxxxxxxxxx
-account_id = xxxxxxxxxxxxxxxx
+token = {tempo_api_token}
+jira_url = https://{domain}.atlassian.net/
+jira_username = email
+jira_api_token = (get token -> https://id.atlassian.com/manage-profile/security/api-tokens)
